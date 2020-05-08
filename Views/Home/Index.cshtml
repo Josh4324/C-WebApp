@@ -9,30 +9,28 @@
 
 <div class="w-75 mx-auto mt-5">
     <form asp-controller="Home" asp-action="Index" method="POST">
-    <input type="number" name="firstNumber" id="" placeholder="First Number">
-    <input type="number" name="secondNumber" id="" placeholder="Second Number">
+    <input type="number" name="firstNumber" id="" placeholder="First Number" required>
+    <input type="number" name="secondNumber" id="" placeholder="Second Number" required>
     <button type="submit">Sqrt</button>
     </form>
 </div>
 
-<div class="w-75 mx-auto mt-5">
-    @try{
+<div class="w-75 mx-auto mt-3">
+    
         @if(ViewBag.Result != null)
         {
             @if(ViewBag.Result > ViewBag.Result1){
-                <p>The number @ViewBag.number1 with square root of @ViewBag.Result 
+                <p class="alert alert-primary">The number @ViewBag.number1 with square root of @ViewBag.Result 
                     has a higher square root than the number @ViewBag.number2 with square root of @ViewBag.Result1</p>
             }else if(ViewBag.Result1 > ViewBag.Result) {
-                <p>The number @ViewBag.number2 with square root of @ViewBag.Result1
+                <p class="alert alert-primary">The number @ViewBag.number2 with square root of @ViewBag.Result1
                     has a higher square root than the number @ViewBag.number1 with square root of @ViewBag.Result</p>
             }else if(ViewBag.Result1 == ViewBag.Result) {
-                <p>Enter another value</p>
-            }else {
-                <p>Invalid Value, Enter another number</p>
+                <p class="alert alert-warning">Please enter another value</p>
             }
             
         }
-    }catch (Exception e){
-        <p>Invalid Value, Enter another number</p>
-    }
+        @if(ViewBag.ErrorMessage != null){
+            <p class="alert alert-danger">@ViewBag.ErrorMessage</p>
+        }
 </div>

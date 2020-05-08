@@ -28,13 +28,22 @@ namespace SquareWeb.Controllers
         {
             int numberOne = int.Parse(firstNumber);
             int numberTwo = int.Parse(secondNumber);
-            int result1 = Convert.ToInt32(Math.Sqrt(numberOne));
-            int result2 = Convert.ToInt32(Math.Sqrt(numberTwo));
-            ViewBag.number1 = numberOne;
-            ViewBag.number2 = numberTwo;
-            ViewBag.Result = result1;
-            ViewBag.Result1 = result2;
-            return View();
+            if (numberOne < 0 || numberTwo < 0)
+            {
+                ViewBag.ErrorMessage = "Invalid Number Entered";
+                return View();
+            }
+            else
+            {
+                float result1 = Convert.ToSingle((Math.Sqrt(numberOne)));
+                float result2 = Convert.ToSingle((Math.Sqrt(numberTwo)));
+                ViewBag.number1 = numberOne;
+                ViewBag.number2 = numberTwo;
+                ViewBag.Result = result1;
+                ViewBag.Result1 = result2;
+                return View();
+            }
+
         }
 
         public IActionResult Privacy()
